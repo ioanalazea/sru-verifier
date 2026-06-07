@@ -1,0 +1,13 @@
+[project]
+name = "sru-verifier"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "launchpadlib>=2.1.0",
+    "pydantic>=2.13.4",
+    "pytest>=9.0.3",
+    "rich>=15.0.0",
+    "typer>=0.26.7",
+]
