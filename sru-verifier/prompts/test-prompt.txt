@@ -1,0 +1,16 @@
+Extract the affected source package from SRU bug <BUG_ID>.
+Then run inside the test container to collect package details and save them to a file.
+
+Steps:
+1. Identify the affected package name from the bug title/tasks.
+2. Enter the container and run:
+	- apt-cache policy <PACKAGE>
+	- apt show <PACKAGE>
+3. Save output to affected_package_report.txt with this format:
+	- Bug: <BUG_ID>
+	- Package: <PACKAGE>
+	- Installed Version: <version or not installed>
+	- Candidate Version: <version>
+	- Package Info: <short summary>
+4. Print only the final file path and package name when done.
+ 

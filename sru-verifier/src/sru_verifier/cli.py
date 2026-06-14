@@ -63,12 +63,6 @@ def bug(
     print(f"Fetching bug {bug_id}")
     print(bug.title)
 
-@app.command()
-def hello(bug_id: int):
-    print(f"Fetching bug {bug_id}")
-    bug = get_bug(bug_id)
-
-    print(bug.title)
 
 if __name__ == "__main__":
     app()

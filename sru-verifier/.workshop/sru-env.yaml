@@ -3,3 +3,7 @@ base: ubuntu@24.04
 sdks:
   - name: copilot
     channel: latest/stable
+actions:
+  # The --yolo flag lets Copilot execute generated bash commands autonomously
+  execute-sru-test: |
+    copilot --yolo --silent --prompt "$(cat prompts/test-prompt.txt) TARGET_PACKAGE: $1 SERIES: $2 TEST_PLAN: $(cat sru_test_plan.txt)"
