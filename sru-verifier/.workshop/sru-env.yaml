@@ -1,0 +1,5 @@
+name: sru-env
+base: ubuntu@24.04
+sdks:
+  - name: copilot
+    channel: latest/stable

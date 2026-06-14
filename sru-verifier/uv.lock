@@ -317,7 +317,7 @@ wheels = [
 [[package]]
 name = "sru-verifier"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "launchpadlib" },
     { name = "pydantic" },
