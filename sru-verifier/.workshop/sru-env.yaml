@@ -6,4 +6,4 @@ sdks:
 actions:
   # The --yolo flag lets Copilot execute generated bash commands autonomously
   execute-sru-test: |
-    copilot --yolo --silent --prompt "$(cat prompts/test-prompt.txt) TARGET_PACKAGE: $1 SERIES: $2 TEST_PLAN: $(cat sru_test_plan.txt)"
+    copilot --yolo --silent --prompt "$(cat prompts/verification_agent.txt) TARGET_PACKAGE: $1 SERIES: $2 TEST_PLAN: $(cat sru_test_plan.txt)"

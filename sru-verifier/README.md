@@ -1,5 +1,7 @@
 # sru-verifier
 
+A small tool for collecting SRU bug details and guiding package verification runs in a sandboxed environment.
+
 
 # 1. Fire up your Python script to pull the bug and generate 'sru_test_plan.txt'
 uv run sru-verifier bug 2147525 --json
