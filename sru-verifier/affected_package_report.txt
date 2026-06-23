@@ -1,0 +1,5 @@
+Bug: 2147525
+Package: iproute2
+Installed Version: 6.1.0-1ubuntu6.3
+Candidate Version: 6.1.0-1ubuntu6.3
+Package Info: networking and traffic control tools - collection of utilities for networking and traffic control communicating with the Linux kernel via the (rt)netlink interface
