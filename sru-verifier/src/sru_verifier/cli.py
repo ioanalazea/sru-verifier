@@ -10,6 +10,11 @@ from .parser.sru import parse_sru_sections
 app = typer.Typer()
 
 
+@app.callback()
+def main():
+    pass
+
+
 def _extract_affected_packages(bug: object) -> list[str]:
     packages: set[str] = set()
 
@@ -38,10 +43,16 @@ def _extract_affected_packages(bug: object) -> list[str]:
 
     return sorted(packages)
 
+
+def _json_output_path(bug_id: int, output_dir: Path) -> Path:
+    return output_dir / f"bug-{bug_id}.json"
+
+
 @app.command()
 def bug(
     bug_id: int,
-    json_output: bool = typer.Option(False, "--json", help="Save bug details to sru_test_plan.txt."),
+    json_output: bool = typer.Option(False, "--json", help="Save bug details to a JSON file."),
+    output_dir: Path = typer.Option(Path("test-plans"), "--output-dir", help="Directory for generated JSON files."),
 ):
     bug = get_bug(bug_id)
 
@@ -55,7 +66,8 @@ def bug(
             "sru": parse_sru_sections(description, include_full_description=True),  # maybe this only
         }
 
-        output_path = Path("sru_test_plan.txt")
+        output_path = _json_output_path(bug_id, output_dir)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         typer.echo(f"Saved to {output_path}")
         return

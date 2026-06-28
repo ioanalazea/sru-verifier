@@ -1,2 +1,5 @@
 sru_test_plan.txt
+test-plans/
 evidence/*
+__pycache__/
+*.py[cod]
