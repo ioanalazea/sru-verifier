@@ -60,7 +60,7 @@ def test_json_output_path_uses_dedicated_directory() -> None:
 def test_bug_command_writes_bug_specific_json_file(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(cli, "get_bug", lambda bug_id: _Bug([_Task(sourcepackagename="wget2")]))
 
-    result = runner.invoke(app, ["bug", "2147525", "--json", "--output-dir", str(tmp_path)])
+    result = runner.invoke(app, ["bug", "2147525", "--output-dir", str(tmp_path)])
 
     assert result.exit_code == 0
     assert "Saved to" in result.stdout

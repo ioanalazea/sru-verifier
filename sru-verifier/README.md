@@ -4,7 +4,7 @@ A small tool for collecting SRU bug details and guiding package verification run
 
 
 # 1. Fire up your Python script to pull the bug and generate 'test-plans/bug-2147525.json'
-uv run sru-verifier bug 2147525 --json
+uv run sru-verifier bug 2147525
 
 # 2. Spin up the sandboxed environment
 workshop launch "sru-env"

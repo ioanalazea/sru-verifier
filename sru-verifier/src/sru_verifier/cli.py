@@ -51,29 +51,22 @@ def _json_output_path(bug_id: int, output_dir: Path) -> Path:
 @app.command()
 def bug(
     bug_id: int,
-    json_output: bool = typer.Option(False, "--json", help="Save bug details to a JSON file."),
     output_dir: Path = typer.Option(Path("test-plans"), "--output-dir", help="Directory for generated JSON files."),
 ):
     bug = get_bug(bug_id)
+    description = getattr(bug, "description", "") or ""
+    payload = {
+        "id": bug_id,
+        "title": getattr(bug, "title", None),  #idk if i need this part
+        "web_link": getattr(bug, "web_link", None),
+        "affected_packages": _extract_affected_packages(bug),
+        "sru": parse_sru_sections(description, include_full_description=True),  # maybe this only
+    }
 
-    if json_output:
-        description = getattr(bug, "description", "") or ""
-        payload = {
-            "id": bug_id,
-            "title": getattr(bug, "title", None),  #idk if i need this part
-            "web_link": getattr(bug, "web_link", None),
-            "affected_packages": _extract_affected_packages(bug),
-            "sru": parse_sru_sections(description, include_full_description=True),  # maybe this only
-        }
-
-        output_path = _json_output_path(bug_id, output_dir)
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-        typer.echo(f"Saved to {output_path}")
-        return
-
-    print(f"Fetching bug {bug_id}")
-    print(bug.title)
+    output_path = _json_output_path(bug_id, output_dir)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    typer.echo(f"Saved to {output_path}")
 
 
 if __name__ == "__main__":
